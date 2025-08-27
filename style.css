@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #d8d8d8;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+form {
+  padding: 0.1rem;
+  margin-bottom: 20px;
+}
+
+.serier-kort {
+  border: 1px solid #797979;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 0.2rem;
+}

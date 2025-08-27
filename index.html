@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="javascript" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personlig Data Dashboard</title>
+  </head>
+  <body>
+    <h1>Mine TV serier</h1>
+    <form id="serier-form">
+      <input type="text" id="tittel" placeholder="Tittel på serie" required />
+      <select id="status">
+        <option value="Planlegges å se"></option>
+        <option value="Følger med på nå"></option>
+        <option value="Sett ferdig"></option>
+      </select>
+      <input
+        type="number"
+        id="episoder"
+        placeholder="Episoder sett til nå"
+        min="0"
+      />
+      <button type="submit">Legg til serier</button>
+    </form>
+    <div id="serie-liste"></div>
+  </body>
+</html>
