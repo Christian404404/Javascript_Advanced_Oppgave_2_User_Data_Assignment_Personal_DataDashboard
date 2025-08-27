@@ -46,6 +46,7 @@ function endreMenyValg(feltTekst, verdi, valgListe, lagre) {
 
   const redigerKnapp = document.createElement("button");
   redigerKnapp.textContent = "Rediger";
+  redigerKnapp.classList.add("rediger-knapp");
 
   redigerKnapp.addEventListener("click", () => {
     if (velg.disabled) {
@@ -75,6 +76,7 @@ function redigerFelt(feltText, verdi, lagre) {
 
   const redigerKnapp = document.createElement("button");
   redigerKnapp.textContent = "Rediger";
+  redigerKnapp.classList.add("rediger-knapp");
 
   redigerKnapp.addEventListener("click", () => {
     if (innData.readOnly) {
@@ -87,7 +89,7 @@ function redigerFelt(feltText, verdi, lagre) {
       lagreTilLocalStorage();
     }
   });
-  beholder.append(feltText, innData, redigerKnapp);
+  beholder.append(felt, innData, redigerKnapp);
   return beholder;
 }
 
@@ -113,39 +115,6 @@ form.addEventListener("submit", (e) => {
   form.reset();
 });
 
-// function visSerier() {
-//   list.replaceChildren();
-//   serierData.forEach((s) => {
-//     const div = document.createElement("div");
-//     div.className = "serier-kort";
-
-//     const serieNavn = document.createElement("h3");
-//     serieNavn.textContent = s.tittel;
-
-//     const serieStatus = document.createElement("p");
-//     serieStatus.textContent = `Status: ${s.status}`;
-
-//     const serieEpisoder = document.createElement("p");
-//     serieEpisoder.textContent = `Episoder sett: ${s.episoder}`;
-
-//     const redigerKnapp = document.createElement("button");
-//     redigerKnapp.textContent = "Rediger episoder";
-//     redigerKnapp.addEventListener("click", () => redigerSerier(s.id));
-
-//     const slettKnapp = document.createElement("button");
-//     slettKnapp.textContent = "Slett serie";
-//     slettKnapp.addEventListener("click", () => slettSerier(s.id));
-
-//     div.replaceChildren(
-//       serieNavn,
-//       serieStatus,
-//       serieEpisoder,
-//       redigerKnapp,
-//       slettKnapp
-//     );
-//     list.appendChild(div);
-//   });
-// }
 function visSerier() {
   list.replaceChildren();
 
@@ -158,23 +127,26 @@ function visSerier() {
       s.tittel,
       (val) => (s.tittel = val)
     );
-    const statusFelt = redigerFelt(
+    const statusFelt = endreMenyValg(
       "Status",
       s.status,
+      ["Planlegges å se", "Følger med på nå", "Sett ferdig"],
       (val) => (s.status = val)
     );
     const episoderFelt = redigerFelt("Episoder", s.episoder, (val) => {
       s.episoder = parseInt(val) || 0;
     });
-    const sjangerFelt = redigerFelt(
+    const sjangerFelt = endreMenyValg(
       "Sjanger",
-      s.genre || "",
-      (val) => (s.genre = val)
+      s.sjanger || "",
+      ["Drama", "Komedie", "Krim", "Fantasy", "Dokumentar", "Annet"],
+      (val) => (s.sjanger = val)
     );
 
     // Delete button
     const slettKnapp = document.createElement("button");
     slettKnapp.textContent = "Slett serie";
+    slettKnapp.classList.add("slett-knapp");
     slettKnapp.addEventListener("click", () => slettSerier(s.id));
 
     div.append(tittelFelt, statusFelt, episoderFelt, sjangerFelt, slettKnapp);
